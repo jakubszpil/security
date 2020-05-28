@@ -14,22 +14,15 @@ import {
   HeaderMenuItem,
 } from 'carbon-components-react/lib/components/UIShell';
 
-const Title = ({ to, prefix }) => {
-  return (
-    // @ts-ignore
-    <HeaderName element={Link} to={to} prefix={prefix}>
-      {window.routes.find(({ path }) => path === window.location.pathname).name}
-    </HeaderName>
-  );
-};
-
 const Header = ({ location }) => {
   return (
-    <CarbonHeader aria-label="IBM Platform Name">
-      <Title prefix="IBM" to="/" />
-      <HeaderNavigation aria-label="IBM [Platform]">
+    <CarbonHeader aria-label="IBM Security">
+      <HeaderName element={Link} to="/dashboard" prefix="IBM | ">
+        {window.routes.find(({ path }) => path === location.pathname)?.name ||
+          'Dashboard'}
+      </HeaderName>
+      <HeaderNavigation aria-label="IBM Security">
         {window.routes.map((route, key) => (
-          // @ts-ignore
           <HeaderMenuItem element={Link} to={route.path} key={key}>
             {route.name}
           </HeaderMenuItem>

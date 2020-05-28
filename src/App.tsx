@@ -16,9 +16,19 @@ function App() {
     <Layout>
       <Switch>
         {pages.map((page, key) => (
-          <Route key={key} path={page.path} component={page.component} />
+          <Route
+            key={key}
+            // @ts-ignore
+            exact={page.exact}
+            path={page.path}
+            component={page.component}
+          />
         ))}
-        <Redirect from="/" to="/dashboard" />
+
+        <Route
+          path="/"
+          component={() => <Redirect from="/" to="/dashboard" />}
+        />
         <Route path="*" component={() => <h1>Not found</h1>} />
       </Switch>
     </Layout>

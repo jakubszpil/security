@@ -1,7 +1,14 @@
 import Dashboard from './Dashboard';
 import Details from './Details';
 
-export default [
+interface Page {
+  name: string;
+  path: string;
+  component: any;
+  exact: boolean;
+}
+
+const pages: Array<Page> = [
   {
     name: 'Dashboard',
     path: '/dashboard',
@@ -12,5 +19,8 @@ export default [
     name: 'Details',
     path: '/details',
     component: Details,
+    exact: false,
   },
 ];
+
+export default pages;
