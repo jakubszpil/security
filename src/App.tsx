@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Layout from './components/Layout';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import pages from './pages';
+
+declare global {
+  interface Window {
+    routes: any;
+  }
+}
+
+window.routes = pages || [];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Switch>
+        {pages.map((page, key) => (
+          <Route key={key} path={page.path} component={page.component} />
+        ))}
+        <Redirect from="/" to="/dashboard" />
+        <Route path="*" component={() => <h1>Not found</h1>} />
+      </Switch>
+    </Layout>
   );
 }
 
