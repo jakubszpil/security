@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 3000
 
 # Finally runs the application
-CMD [ "node", "index.js" ]
+CMD [ "node", "index.tsx" ]
